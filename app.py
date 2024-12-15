@@ -26,6 +26,6 @@ app.layout = [
 
 
 
-if __name__ == '__main__':
+#if __name__ == '__main__':
 #     port = int(os.getenv("PORT", 8050))
-    app.run_server(debug=True)
+#    app.run_server(debug=True)
