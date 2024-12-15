@@ -1,6 +1,7 @@
 from dash import Dash, html, dcc, callback, Output, Input
 import plotly.express as px
 import pandas as pd
+import os
 
 df = pd.read_csv('https://raw.githubusercontent.com/plotly/datasets/master/gapminder_unfiltered.csv')
 
@@ -21,4 +22,5 @@ app.layout = [
 #     return px.line(dff, x='year', y='pop')
 
 if __name__ == '__main__':
-    app.run(debug=True)
+    port = int(os.getenv("PORT", 8050))
+    app.run(host="0.0.0.0", port=port, debug=True)
