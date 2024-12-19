@@ -1,7 +1,10 @@
-dash==2.6.2
-dash-core-components==2.0.0
-dash-html-components==2.0.0
+dash==2.11.1
+dash-core-components
+dash-html-components
 dash-table==5.0.0
+Flask>=2.0,<3.0
 # plotly==5.10.0
-pandas==1.5.0
+numpy==1.25.0  # Example, use a compatible version
+pandas==2.0.3  # Example, use a compatible version
 gunicorn==20.1.0
+
