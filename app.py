@@ -14,20 +14,27 @@ data = response.json()
 # Convert the fetched data into a pandas DataFrame
 users = pd.json_normalize(data['results'])
 users['age'] = users['dob.age']
+users['gender'] = users['gender']
 
-# Create a simple plot
-fig = px.bar(users, x='name.first', y='age', title="Users' Age Distribution")
+# Create a simple bar plot for age
+fig_age = px.bar(users, x='name.first', y='age', title="Users' Age Distribution")
+
+# Create a simple pie plot for gender
+fig_gender = px.pie(users, names='gender', title="Users' Gender Distribution")
+
+
+server = app.server # Added for the server 
 
 # Define the app layout
 app.layout = html.Div([
     html.H1("Random User Data", id='title'),
     
-    # Radio Button for dynamic title change
+    # Radio Button for dynamic title and plot change
     dcc.RadioItems(
         id='title-selector',
         options=[
             {'label': 'Age Distribution', 'value': 'Age Distribution'},
-            {'label': 'User Information', 'value': 'User Info'}
+            {'label': 'Gender Distribution', 'value': 'Gender Distribution'}
         ],
         value='Age Distribution',
         labelStyle={'display': 'inline-block'}
@@ -36,17 +43,21 @@ app.layout = html.Div([
     # Graph
     dcc.Graph(
         id='user-plot',
-        figure=fig
+        figure=fig_age  # default figure
     )
 ])
 
-# Define the callback to change the title
+# Define the callback to change both the title and the plot
 @app.callback(
-    dash.dependencies.Output('title', 'children'),
+    [dash.dependencies.Output('title', 'children'),
+     dash.dependencies.Output('user-plot', 'figure')],
     [dash.dependencies.Input('title-selector', 'value')]
 )
-def update_title(selected_value):
-    return f"Random User Data - {selected_value}"
+def update_content(selected_value):
+    if selected_value == 'Age Distribution':
+        return "Random User Data - Age Distribution", fig_age
+    else:
+        return "Random User Data - Gender Distribution", fig_gender
 
 if __name__ == '__main__':
     app.run_server(debug=True)
