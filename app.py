@@ -23,7 +23,6 @@ fig_age = px.bar(users, x='name.first', y='age', title="Users' Age Distribution"
 fig_gender = px.pie(users, names='gender', title="Users' Gender Distribution")
 
 
-server = app.server # Added for the server 
 
 # Define the app layout
 app.layout = html.Div([
