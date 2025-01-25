@@ -22,7 +22,6 @@ fig_age = px.bar(users, x='name.first', y='age', title="Users' Age Distribution 
 # Create a simple pie plot for gender
 fig_gender = px.pie(users, names='gender', title="Users' Gender Distribution")
 
-server = app.server
 
 # Define the app layout
 app.layout = html.Div([
