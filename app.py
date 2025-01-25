@@ -17,7 +17,7 @@ users['age'] = users['dob.age']
 users['gender'] = users['gender']
 
 # Create a simple bar plot for age
-fig_age = px.bar(users, x='name.first', y='age', title="Users' Age Distribution NEW TITLE")
+fig_age = px.bar(users, x='name.first', y='age', title="Users' Age Distribution this is a chang")
 
 # Create a simple pie plot for gender
 fig_gender = px.pie(users, names='gender', title="Users' Gender Distribution")
